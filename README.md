@@ -1,4 +1,4 @@
-# 🏅 Olympic Data Analytics: 120 Years (1896 – 2016)
+# Olympic Data Analytics: 120 Years (1896 – 2016)
 
 ![Olympic Data Analytics UI Preview](preview.png)
 
@@ -6,26 +6,26 @@ An interactive, multi-dimensional data analytics web application exploring 120 y
 
 ---
 
-## 🌟 Key Modules & Features
+## Key Modules and Features
 
-* **Global Medal Tally & Map:** Interactive year-wise and nation-wise filters, world choropleth medal intensity map, and stacked Gold/Silver/Bronze breakdown charts.
+* **Global Medal Tally and Map:** Interactive year-wise and nation-wise filters, world choropleth medal intensity map, and stacked Gold, Silver, and Bronze breakdown charts.
 * **120-Year Historical Trends:** Multi-metric time-series visualizations tracking athlete participation growth (Men vs Women), event expansions, and sport-wise timeline heatmaps.
 * **Country Deep Dive:** Select any nation to view its historical medal trajectory, sport dominance matrix, and all-time top 10 medalists.
-* **Athlete Demographics:** Physical profiles and distribution curves analyzing medalist ages, height vs. weight clustering by sport, and gender parity evolution.
+* **Athlete Demographics:** Physical profiles and distribution curves analyzing medalist ages, height vs weight clustering by sport, and gender parity evolution.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **Language:** Python
 * **Web Framework:** Streamlit
 * **Data Processing:** Pandas, NumPy
-* **Data Visualization:** Plotly (Choropleth Maps, Heatmaps, Distplots, Stacked Charts), Scipy
+* **Data Visualization:** Plotly (Choropleth Maps, Heatmaps, Distplots, Stacked Charts), Scipy, Matplotlib, Seaborn
 * **Development Environment:** Jupyter Notebook
 
 ---
 
-## 🚀 Quick Start (Local Setup)
+## Quick Start (Local Setup)
 
 ### 1. Clone the repository
 ```bash
@@ -51,7 +51,7 @@ streamlit run app.py
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
 ### Streamlit Community Cloud (Recommended)
 1. Push this repository to your GitHub.
@@ -61,5 +61,5 @@ streamlit run app.py
 
 ---
 
-## 👤 Author
-- **MD. Tamim Hossain** — Computer Science & Engineering
+## Author
+- **MD. Tamim Hossain** — Computer Science and Engineering
