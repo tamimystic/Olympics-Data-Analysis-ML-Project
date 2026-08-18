@@ -138,7 +138,7 @@ stats = pipeline.get_summary_statistics()
 st.sidebar.markdown("<h2 style='color:#58a6ff; font-weight:800; font-size:20px; margin-bottom:15px;'>Navigation</h2>", unsafe_allow_html=True)
 user_menu = st.sidebar.radio(
     'Select Analytics Module',
-    ('Medal Tally', 'Historical Trends', 'Country Deep Dive', 'Athlete Demographics')
+    ('Medal Tally', 'Historical Trends', 'Country Deep Dive', 'Country Medal Explorer', 'Athlete Demographics')
 )
 
 st.markdown("""
@@ -298,6 +298,80 @@ elif user_menu == 'Country Deep Dive':
     st.markdown(f'<div class="card-title">Top 10 Athletes of {selected_c}</div>', unsafe_allow_html=True)
     top10_df = pipeline.country_analyzer.get_top_country_athletes(selected_c)
     st.dataframe(top10_df, use_container_width=True, height=260)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+elif user_menu == 'Country Medal Explorer':
+    country_list = pipeline.country_analyzer.get_country_list()
+    default_index = country_list.index('USA') if 'USA' in country_list else 0
+    
+    st.sidebar.markdown("<hr style='border-color:#30363d;'/>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h4 style='color:#8b949e; font-size:13px; text-transform:uppercase;'>Explorer Filters</h4>", unsafe_allow_html=True)
+    
+    selected_country = st.sidebar.selectbox('Select Country', country_list, index=default_index)
+    
+    available_sports = pipeline.country_analyzer.get_available_sports_for_country(selected_country)
+    selected_sport = st.sidebar.selectbox('Filter by Sport', available_sports)
+    
+    selected_medal = st.sidebar.selectbox('Filter by Medal Type', ['All Medals', 'Gold', 'Silver', 'Bronze'])
+    
+    available_years = pipeline.country_analyzer.get_available_years_for_country(selected_country)
+    selected_year = st.sidebar.selectbox('Filter by Year', available_years)
+
+    detailed_records = pipeline.country_analyzer.get_detailed_medalist_records(
+        selected_country, selected_sport, selected_medal, selected_year
+    )
+    sport_breakdown = pipeline.country_analyzer.get_country_sport_breakdown(selected_country)
+
+    g_count = detailed_records[detailed_records['Medal'] == 'Gold'].shape[0] if selected_medal == 'All Medals' else (detailed_records.shape[0] if selected_medal == 'Gold' else 0)
+    s_count = detailed_records[detailed_records['Medal'] == 'Silver'].shape[0] if selected_medal == 'All Medals' else (detailed_records.shape[0] if selected_medal == 'Silver' else 0)
+    b_count = detailed_records[detailed_records['Medal'] == 'Bronze'].shape[0] if selected_medal == 'All Medals' else (detailed_records.shape[0] if selected_medal == 'Bronze' else 0)
+    t_count = detailed_records.shape[0]
+
+    st.markdown(f"""
+    <div class="kpi-row">
+        <div class="kpi-card" style="border-left: 4px solid #58a6ff;">
+            <div class="kpi-title">Query Results</div>
+            <div class="kpi-value">{t_count}</div>
+        </div>
+        <div class="kpi-card" style="border-left: 4px solid #d29922;">
+            <div class="kpi-title">Gold Medals</div>
+            <div class="kpi-value" style="color: #d29922;">{g_count}</div>
+        </div>
+        <div class="kpi-card" style="border-left: 4px solid #94a3b8;">
+            <div class="kpi-title">Silver Medals</div>
+            <div class="kpi-value" style="color: #94a3b8;">{s_count}</div>
+        </div>
+        <div class="kpi-card" style="border-left: 4px solid #b45309;">
+            <div class="kpi-title">Bronze Medals</div>
+            <div class="kpi-value" style="color: #b45309;">{b_count}</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    exp_col1, exp_col2 = st.columns([1, 1.2], gap="large")
+    
+    with exp_col1:
+        st.markdown('<div class="card-panel">', unsafe_allow_html=True)
+        st.markdown(f'<div class="card-title">Sport-wise Medal Breakdown for {selected_country}</div>', unsafe_allow_html=True)
+        st.dataframe(sport_breakdown, use_container_width=True, height=340)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with exp_col2:
+        st.markdown('<div class="card-panel">', unsafe_allow_html=True)
+        st.markdown(f'<div class="card-title">Top Sports Medal Distribution ({selected_country})</div>', unsafe_allow_html=True)
+        if not sport_breakdown.empty:
+            fig_sport_bar = ChartBuilder.create_sport_breakdown_bar(sport_breakdown)
+            st.plotly_chart(fig_sport_bar, use_container_width=True, config={'displayModeBar': False})
+        else:
+            st.info("No sports breakdown data available.")
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="card-panel">', unsafe_allow_html=True)
+    st.markdown(f'<div class="card-title">Detailed Medalist and Event Log — {selected_country} ({selected_sport} | {selected_medal} | {selected_year})</div>', unsafe_allow_html=True)
+    if not detailed_records.empty:
+        st.dataframe(detailed_records, use_container_width=True, height=420)
+    else:
+        st.info("No matching medalist records found for the selected filter combination.")
     st.markdown('</div>', unsafe_allow_html=True)
 
 elif user_menu == 'Athlete Demographics':

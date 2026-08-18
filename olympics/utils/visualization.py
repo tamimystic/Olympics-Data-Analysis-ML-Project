@@ -54,6 +54,25 @@ class ChartBuilder:
         return fig
 
     @staticmethod
+    def create_sport_breakdown_bar(data: pd.DataFrame) -> go.Figure:
+        top_data = data.head(12)
+        fig = go.Figure()
+        fig.add_trace(go.Bar(y=top_data['Sport'], x=top_data['Gold'], name='Gold', orientation='h', marker_color='#d29922'))
+        fig.add_trace(go.Bar(y=top_data['Sport'], x=top_data['Silver'], name='Silver', orientation='h', marker_color='#94a3b8'))
+        fig.add_trace(go.Bar(y=top_data['Sport'], x=top_data['Bronze'], name='Bronze', orientation='h', marker_color='#b45309'))
+        fig.update_layout(
+            barmode='stack',
+            height=340,
+            margin=dict(l=10, r=10, t=10, b=10),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            font=dict(color='#8b949e', size=11),
+            yaxis=dict(autorange="reversed"),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+        )
+        return fig
+
+    @staticmethod
     def create_line_chart(data: pd.DataFrame, x_col: str, y_col: str, line_color: str = '#58a6ff') -> go.Figure:
         fig = px.line(data, x=x_col, y=y_col, markers=True)
         fig.update_traces(line_color=line_color, line_width=3)
