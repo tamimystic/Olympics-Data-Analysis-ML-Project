@@ -1,6 +1,6 @@
 # Olympic Data Analytics: 120 Years (1896 – 2016)
 
-![Olympic Data Analytics UI Preview](ui.png)
+![Olympic Data Analytics UI](ui.png)
 
 An interactive, multi-dimensional data analytics web application exploring 120 years of Olympic history across 271,000+ athlete records, 206 nations, and 32 Olympic editions.
 
