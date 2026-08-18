@@ -56,7 +56,7 @@ streamlit run app.py
 
 ### Streamlit Community Cloud (Recommended)
 1. Push this repository to your GitHub.
-2. Go to [share.streamlit.io](https://share.streamlit.io) and click **"New app"**.
+2. Go to [share.streamlit.io](https://tamimystic-olympics-data-analysis.streamlit.app/) and click **"New app"**.
 3. Select this repository, branch `main`, and main file path `app.py`.
 4. Click **"Deploy"**!
 
