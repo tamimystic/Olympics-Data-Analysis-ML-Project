@@ -1,0 +1,1 @@
+from olympics.pipeline.analytics_pipeline import OlympicAnalyticsPipeline
