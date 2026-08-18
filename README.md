@@ -1,5 +1,7 @@
 # Olympic Data Analytics: 120 Years (1896 – 2016)
 
+[Live](https://tamimystic-olympics-data-analysis.streamlit.app/)
+
 ![Olympic Data Analytics UI](ui.png)
 
 An interactive, multi-dimensional data analytics web application exploring 120 years of Olympic history across 271,000+ athlete records, 206 nations, and 32 Olympic editions.
@@ -56,7 +58,7 @@ streamlit run app.py
 
 ### Streamlit Community Cloud (Recommended)
 1. Push this repository to your GitHub.
-2. Go to [share.streamlit.io](https://tamimystic-olympics-data-analysis.streamlit.app/) and click **"New app"**.
+2. Go to [share.streamlit.io](https://share.streamlit.io/) and click **"New app"**.
 3. Select this repository, branch `main`, and main file path `app.py`.
 4. Click **"Deploy"**!
 
