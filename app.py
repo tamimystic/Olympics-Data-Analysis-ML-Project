@@ -20,32 +20,8 @@ st.markdown("""
         color: #e6edf3 !important;
     }
     
-    [data-testid="stToolbar"],
-    [data-testid="stDecoration"] {
-        display: none !important;
-    }
-    
-    header[data-testid="stHeader"] {
-        background: transparent !important;
-        z-index: 100000 !important;
-    }
-    
-    [data-testid="stSidebarCollapsedControl"],
-    [data-testid="collapsedControl"],
-    header button,
-    [data-testid="stSidebarCollapseButton"] {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        color: #58a6ff !important;
-        background-color: #161b22 !important;
-        border: 1px solid #30363d !important;
-        border-radius: 6px !important;
-        z-index: 9999999 !important;
-    }
-    
     .block-container {
-        padding-top: 3.5rem !important;
+        padding-top: 2rem !important;
         padding-bottom: 2rem !important;
         max-width: 1440px !important;
     }
