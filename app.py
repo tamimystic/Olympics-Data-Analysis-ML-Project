@@ -20,8 +20,24 @@ st.markdown("""
         color: #e6edf3 !important;
     }
     
-    header, [data-testid="stToolbar"], [data-testid="stHeader"] {
+    [data-testid="stToolbar"] {
         display: none !important;
+    }
+    
+    header {
+        background: transparent !important;
+    }
+    
+    [data-testid="stSidebarCollapsedControl"] {
+        display: flex !important;
+        visibility: visible !important;
+        z-index: 999999 !important;
+        color: #58a6ff !important;
+        background-color: #161b22 !important;
+        border: 1px solid #30363d !important;
+        border-radius: 6px !important;
+        margin-top: 8px !important;
+        margin-left: 8px !important;
     }
     
     .block-container {
